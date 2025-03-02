@@ -3,23 +3,16 @@ layout: home
 title: Political Analysis Replication Guidelines
 ---
 
-# Political Analysis Replication Guidelines
-
-Political Analysis requires authors of conditionally accepted manuscripts to provide complete **replication materials** before publication. This ensures that all findings are reproducible. The **replication team** verifies compliance before final acceptance.
+Political Analysis requires authors of conditionally accepted manuscripts to provide complete replication materials before publication. This ensures that all findings are reproducible.
 
 ## **Replication Checklist**
-To meet the replication requirements, authors must provide:
+To insure timely replication of your materials, complete the following checklist before submitting your materials.
 
 ✔️ **Run File**: A script (e.g., `.R`, `.py`, `.sh`) that executes all analyses in the correct order.  
-✔️ **Log File**: A log from a full run of the analysis.  
-✔️ **Figures & Outputs**: All tables and figures generated.  
-✔️ **Compute & Runtime Details**: Total execution time and required computing resources.  
-✔️ **Data & Code**: Clearly documented datasets and analysis scripts.  
-
-## **General Requirements**
-- Replication materials must be **sufficient to reproduce** the study’s results.
-- Documentation should be **clear and structured** for future researchers.
-- If data access is restricted, authors must notify the editor upon submission.
+✔️ **Log File**: A log of the output from a complete run of the analysis, generating by executing the run file.
+✔️ **Figures & Outputs**: All tables and figures from the complete run should be included (timestamps for the figures should be consistent with the timestamp for the log file).
+✔️ **Compute & Runtime Details**: In the run file, note the approximate runtime for each script, as well as the compute used (number of cores and required RAM).
+✔️ **Data & Code**: Clearly documented datasets and analysis scripts.
 
 ## **Submission Process**
 1. **Prepare**: Organize the replication package, ensuring all components run smoothly.  
