@@ -1,6 +1,6 @@
 ---
 layout: home
-title: Political Analysis Replication Guidelines
+title: 
 ---
 
 Political Analysis requires authors of conditionally accepted manuscripts to provide complete replication materials before publication. This ensures that all findings are reproducible.
