@@ -1,18 +1,17 @@
 ---
 layout: page
-title: About
+title: 
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+The PA replication team is currently located at [Washington University in St. Louis](https://polisci.wustl.edu/). 
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+**Associate Editor For Replications**
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+* [Christopher Lucas](https://christopherlucas.org/)
 
+**Editorial Assistants for Replications**
 
-[jekyll-organization]: https://github.com/jekyll
+* [Nathan Englehart](https://nathanenglehart.github.io/)
+* [Dihan Shi](https://www.dihan.org/)
+* [Hongyu Yu](https://polisci.wustl.edu/people/hongyu-yu)
