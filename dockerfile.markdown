@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Dockerfiles
+title: Docker
 permalink: /dockerfiles/
 ---
 

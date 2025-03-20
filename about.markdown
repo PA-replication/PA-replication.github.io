@@ -1,6 +1,6 @@
 ---
 layout: page
-title: PA Replication Team
+title: Team
 permalink: /about/
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Example Replication Archive
+title: Example 
 permalink: /example/
 ---
 
