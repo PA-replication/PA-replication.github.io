@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 
+title: Dockerfiles
 permalink: /dockerfiles/
 ---
 
@@ -84,3 +84,4 @@ exit
 ```
 
 Now in `run.sh`, one can call `julia` and have it access `Ipopt` 0.6.5 and `JuMP` 0.21.10. Similarly, `R` can use the `ggplot2` library (3.5.0). All that is needed in `run.sh` is `julia 00x_script.jl` and `Rscript 00x_script.r`.
+
