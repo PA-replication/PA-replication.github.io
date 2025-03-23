@@ -143,4 +143,4 @@ This package reproduces the results reported in the manuscript.
 - OS: Ubuntu 22.04 (or macOS / Windows with adjustments)  
 - Runtime: approximately 30 minutes  
 - Resources: 4 CPU cores, 8GB RAM  
-
+```
