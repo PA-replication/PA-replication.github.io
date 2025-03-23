@@ -22,8 +22,6 @@ echo "Operating System:"; uname -a
 echo "Python Version:"; python3 --version
 echo "R Version:"; R --version
 echo "Julia Version:"; julia --version
-echo "Cores: 4"
-echo "RAM: 8GB"
 
 # execute all scripts in correct order
 python3 code/001_script1.py
