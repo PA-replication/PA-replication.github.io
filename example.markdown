@@ -95,9 +95,6 @@ Two alternative options are available.
 
 ## Read Me File
 
-Please include a file following the Social Science Data Editors' template:  
-[https://social-science-data-editors.github.io/template_README/](https://social-science-data-editors.github.io/template_README/).
-
 Your replication package must include a `README.md` file that describes how to run the code, the software environment, and the file structure. This file should adhere to the Social Science Data Editors template: [https://social-science-data-editors.github.io/template_README/](https://social-science-data-editors.github.io/template_README/).
 
 ```markdown

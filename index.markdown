@@ -26,4 +26,6 @@ Clearly documented datasets and analysis scripts.
 
 For a detailed list of requirements and instructions on how to submit, see the full **[Replication Guidelines (PDF)](replication_guidelines.pdf)**. For questions, contact: **political.analysis.replications@gmail.com**.
 
+* An example replication archive is available [here](https://pa-replication.github.io/example/)
+
 ---
