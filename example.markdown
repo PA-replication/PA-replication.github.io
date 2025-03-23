@@ -1,56 +1,146 @@
----
-layout: page
+--- 
+layout: page 
 title: Example 
-permalink: /example/
+permalink: /example/ 
+---  
+
+The replication checklist includes several items. Below is a skeleton of a replication example that would be an acceptable submission. This example reflects best practices for replication packages submitted to *Political Analysis*. 
+
+## Checklist of Required Elements of the Replication Archive
+
+Political Analysis requires that all replication archives include the following components, described in greater detail in these guidelines.
+
+1. **Run File**: Include a single script (e.g., shell script, R script, Python script) that executes all code in the correct order, ensuring a fully automated replication process. In this file, note the compute environment (number of cores, required RAM, etc.) and the runtime for each script.
+
+2. **Log File, Figures, and Output**: Submit a log file generated from processing the run file. If using RStudio, consider compiling to HTML for readability. Additionally, include tables and figures generated from this run (the timestamps should match).
+
+3. **Readme**: A file following the Social Science Data Editors' template:  
+[https://social-science-data-editors.github.io/template_README/](https://social-science-data-editors.github.io/template_README/)
+
+4. **Code**: Code used to replicate the analyses.
+
+5. **Data**: All data required for the analyses.
+
 ---
 
-The replication checklist includes several items. Below is a skeleton of a replication example that would be an acceptable submission. 
+## Run File
 
-### **Run File**
-
-The below is an example of a shell run file `run.sh`. We strongly encourage running the use of a `Dockerfile` to run such scripts (see [here](https://pa-replication.github.io/dockerfiles/)).
+The following is an example `run.sh` file. It should execute all scripts necessary to reproduce the results reported in the manuscript. The execution must be automated and ordered correctly. We strongly encourage running the use of a Dockerfile to run such scripts (see here).
 
 ```bash
 #!/bin/bash
 
+# Exit on error and echo all commands
 set -ex
 
-python3 001_script1.py
-Rscript 002_script2.r
-julia 003_script3.jl
+# Write output to log file
+exec > >(tee -a run.log) 2>&1
+
+# Print system information
+echo "Operating System:"; uname -a
+echo "Python Version:"; python3 --version
+echo "R Version:"; R --version
+echo "Julia Version:"; julia --version
+echo "Cores: 4"
+echo "RAM: 8GB"
+
+# Execute analysis scripts in correct order
+python3 code/001_script1.py
+Rscript code/002_script2.R
+julia code/003_script3.jl
+
+echo "Replication run completed. Outputs written to 'figures/' and 'tables/'."
 ```
 
-Instead of using a `Dockerfile`, one can create virtual environments using [`renv`](https://rstudio.github.io/renv/articles/renv.html), [`conda`](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html), [`venv`](https://docs.python.org/3/library/venv.html), and more. Archives should not be submitted without including materials to re-create environments.
+All scripts must be self-contained and not require manual input. If your analysis relies on specific software versions or packages, please document them clearly in the replication environment (e.g., `Dockerfile`, `renv.lock`, `environment.yml`).
 
-### **Log File**
+It is also acceptable to use a standalone R script (e.g., `run.R`) or Python script (e.g., `run.py`) as the master script. These should likewise ensure fully automated execution and include environment and runtime documentation.
 
-A log file confirms that you were able to successfully run your script. The below line can be appended to the `run.sh` script above. It creates a `run.log` file.
+---
 
+### Log File
+
+A log file confirms successful execution of the replication scripts and helps verify that all output files were generated from a single automated run.
+
+#### Shell Script (`run.sh`)
+
+If you are using a shell script as the run file, the following line captures all console output and writes it to `run.log`:
+
+```bash
+exec > >(tee -a run.log) 2>&1
 ```
-exec >>(tee -a run.log) 2>&1
+
+This line should appear near the top of the script. All subsequent output (including error messages) will be saved to `run.log`.
+
+#### R Script (`run.R`)
+
+If using R as your run file, you can redirect output using `sink()`:
+
+```r
+sink("run.log", split = TRUE)
+cat("Starting replication at: ", Sys.time(), "\n")
+
+# Run analysis scripts
+source("code/001_script1.R")
+source("code/002_script2.R")
+
+cat("Replication completed at: ", Sys.time(), "\n")
+sink()
 ```
 
-### **Figures/Outputs**
+Alternatively, if using `rmarkdown::render()` or `knitr`, consider compiling to HTML or PDF and include it in the package (e.g., `run_output.html`).
 
-All figures and outputs generated as part of the replication process should be included in the archive.
+#### Python Script (`run.py`)
 
-* A clear way to do this is by creating `figures` and `tables` folders
+For Python-based replication, log output by redirecting `stdout` and `stderr`:
 
-### **Compute & Runtime Details**
+```python
+import sys
+import time
 
-A `README.md` file should be included which lists the computational requirements and runtime details of the replication. An example is included below.
+logfile = open("run.log", "w")
+sys.stdout = sys.stderr = logfile
 
+print("Starting replication at:", time.ctime())
+
+# Run analysis scripts
+exec(open("code/001_script1.py").read())
+exec(open("code/002_script2.py").read())
+
+print("Replication completed at:", time.ctime())
+logfile.close()
 ```
-### PA Example Replication
 
-Code details, authors, and any other relevant information should be listed here.
+Alternatively, if using Jupyter Notebooks, export the notebook as `.html` or `.pdf` after execution and include it as part of your log.
 
-#### Computational requirements and runtime details
+---
 
-Something similar to the following should be listed. 
+## Figures and Outputs
 
-- This script took $X$ hours to run on **insert OS here**. 
-- I used $X$ **CPU cores** and $Y$ **gigabytes of RAM**. 
-- $Z$ **GPU cores / no GPU cores** are required.
-```
+All figures and tables generated by the scripts must be saved programmatically. Use clearly named output folders:
+
+- `figures/` for plots (`.pdf`, `.png`)
+- `tables/` for results (`.csv`, `.tex`, `.txt`)
+
+Filenames should correspond to those referenced in the manuscript, such as `figure1.pdf` or `table2.csv`, to facilitate verification.
+
+---
+
+## Compute and Runtime Details
+
+Your replication package must include a `README.md` file that describes how to run the code, the software environment, and the file structure. Below is a minimal example.
+
+```markdown
+### Replication Package Overview
+
+This package reproduces the results reported in the manuscript.
+
+#### Software and Environment
+
+- Python 3.10.6 with packages: pandas, numpy  
+- R 4.3.1 with packages: tidyverse  
+- Julia 1.9.2 with package: Plots.jl  
+- OS: Ubuntu 22.04 (or macOS / Windows with adjustments)  
+- Runtime: approximately 30 minutes  
+- Resources: 4 CPU cores, 8GB RAM  
 
