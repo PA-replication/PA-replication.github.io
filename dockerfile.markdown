@@ -10,7 +10,7 @@ Building and running a dockerfile involves two keys steps.
 
 1. Write a file called `Dockerfile` 
 2. Build: `sudo docker build -t your-name/your-image-name .`
-3. Run: `sudo docker run your-name/your-image-name
+3. Run: `sudo docker run your-name/your-image-name`
 
 An example `Dockerfile` is included below. 
 

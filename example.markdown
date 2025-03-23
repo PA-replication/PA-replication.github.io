@@ -25,18 +25,16 @@ Political Analysis requires that all replication archives include the following 
 
 ## Run File
 
-The following is an example `run.sh` file. It should execute all scripts necessary to reproduce the results reported in the manuscript. The execution must be automated and ordered correctly. We strongly encourage running the use of a Dockerfile to run such scripts (see here).
+The following is an example `run.sh` file. It should execute all scripts necessary to reproduce the results reported in the manuscript. The execution must be automated and ordered correctly. We strongly encourage running the use of a [`Dockerfile`](https://pa-replication.github.io/dockerfiles/) to run such scripts.
 
 ```bash
 #!/bin/bash
 
-# Exit on error and echo all commands
-set -ex
+set -ex # echo all commands
 
-# Write output to log file
-exec > >(tee -a run.log) 2>&1
+exec > >(tee -a run.log) 2>&1 # write output to log file
 
-# Print system information
+# print system information to report in README
 echo "Operating System:"; uname -a
 echo "Python Version:"; python3 --version
 echo "R Version:"; R --version
@@ -44,35 +42,17 @@ echo "Julia Version:"; julia --version
 echo "Cores: 4"
 echo "RAM: 8GB"
 
-# Execute analysis scripts in correct order
+# execute all scripts in correct order
 python3 code/001_script1.py
 Rscript code/002_script2.R
 julia code/003_script3.jl
-
-echo "Replication run completed. Outputs written to 'figures/' and 'tables/'."
 ```
 
 All scripts must be self-contained and not require manual input. If your analysis relies on specific software versions or packages, please document them clearly in the replication environment (e.g., `Dockerfile`, `renv.lock`, `environment.yml`).
 
 It is also acceptable to use a standalone R script (e.g., `run.R`) or Python script (e.g., `run.py`) as the master script. These should likewise ensure fully automated execution and include environment and runtime documentation.
 
----
-
-### Log File
-
-A log file confirms successful execution of the replication scripts and helps verify that all output files were generated from a single automated run.
-
-#### Shell Script (`run.sh`)
-
-If you are using a shell script as the run file, the following line captures all console output and writes it to `run.log`:
-
-```bash
-exec > >(tee -a run.log) 2>&1
-```
-
-This line should appear near the top of the script. All subsequent output (including error messages) will be saved to `run.log`.
-
-#### R Script (`run.R`)
+### R Script (`run.R`)
 
 If using R as your run file, you can redirect output using `sink()`:
 
@@ -90,7 +70,7 @@ sink()
 
 Alternatively, if using `rmarkdown::render()` or `knitr`, consider compiling to HTML or PDF and include it in the package (e.g., `run_output.html`).
 
-#### Python Script (`run.py`)
+### Python Script (`run.py`)
 
 For Python-based replication, log output by redirecting `stdout` and `stderr`:
 
@@ -112,6 +92,10 @@ logfile.close()
 ```
 
 Alternatively, if using Jupyter Notebooks, export the notebook as `.html` or `.pdf` after execution and include it as part of your log.
+
+## Log File
+
+A log file confirms successful execution of the replication scripts and helps verify that all output files were generated from a single automated run. The above `run.sh` file includes a line to generate a log file.
 
 ---
 
@@ -142,5 +126,5 @@ This package reproduces the results reported in the manuscript.
 - Julia 1.9.2 with package: Plots.jl  
 - OS: Ubuntu 22.04 (or macOS / Windows with adjustments)  
 - Runtime: approximately 30 minutes  
-- Resources: 4 CPU cores, 8GB RAM  
+- Resources: 4 CPU cores, 8GB RAM, 0 GPU cores 
 ```
