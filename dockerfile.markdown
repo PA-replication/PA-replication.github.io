@@ -4,7 +4,7 @@ title: Docker
 permalink: /dockerfiles/
 ---
 
-Creating a `dockerfile` is an excellent method for ensuring that your replication archive is easily reproducable across different computers. When you build and run and dockerfile, you can create effcetively run your code using a virtual machine which anyone else can also access. 
+Creating a `dockerfile` is an excellent method for ensuring that your replication archive is easily reproducable across different computers. When you build and run and dockerfile, you can create effectively run your code using a virtual machine which anyone else can also access. 
 
 Building and running a dockerfile involves two keys steps. 
 
