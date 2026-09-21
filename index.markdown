@@ -28,7 +28,6 @@ In the run file, note the approximate runtime for each script, as well as the co
 #### **Data & Code**:  
 Clearly documented datasets and analysis scripts.  
 
-
 * An example replication archive is available [here](https://pa-replication.github.io/example/)
 
 ---
